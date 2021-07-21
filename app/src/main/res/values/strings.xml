@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AutoTextApp</string>
+
+    <string name="auto_text">auto text</string>
+    <string name="auto_text_hint">If on the program will automatically text who ever tries to call or sends a text message</string>
+
+    <string name="read_text">read texts received</string>
+
 </resources>
