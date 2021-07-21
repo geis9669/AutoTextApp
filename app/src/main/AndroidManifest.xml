@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.autotextapp">
 
+    <!--Needs to receive the sms message to be able to read it aloud and text the number back -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!--needs to be able to text back after receiving a message-->
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <!--to be able to receive a call and text it right away-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
