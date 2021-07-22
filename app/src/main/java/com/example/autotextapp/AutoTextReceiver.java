@@ -53,7 +53,8 @@ public class AutoTextReceiver extends BroadcastReceiver {
                 }
 
 
-                readText.speak(smsMessageStr, TextToSpeech.QUEUE_FLUSH, null);
+                inst.handleSpeakText(smsMessageStr);
+//                readText.speak(smsMessageStr, TextToSpeech.QUEUE_FLUSH, null);
             }
         }
 

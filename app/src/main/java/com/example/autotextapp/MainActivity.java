@@ -8,7 +8,11 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.widget.CompoundButton;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static MainActivity inst;
@@ -16,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION = 1;
     private SwitchCompat autoTextSwitch;
     private SwitchCompat readTextSwitch;
+    private TextToSpeech readText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,30 @@ public class MainActivity extends AppCompatActivity {
 //            AutoTextReceiver.instance().readTextStateChanged(isChecked);
         });
 
+        readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status ->{
+            if(status != TextToSpeech.ERROR)
+            {
+                readText.setLanguage(Locale.US);
+                // may need the language to be passed in.
+            }
+        });
+
+
         getAllPermissions();
+    }
+
+    public void handleSpeakText(String message)
+    {
+        readText.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    }
+    public void onPause(){
+//        if(readText != null){
+//            readText.stop();
+//            readText.shutdown();
+//        }
+        super.onPause();
     }
 
     public boolean getAutoTextSwitchState()
