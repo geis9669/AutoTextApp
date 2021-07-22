@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat autoTextSwitch;
     private SwitchCompat readTextSwitch;
     private TextToSpeech readText;
+
+    private EditText smsEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        smsEditText = findViewById(R.id.textView);
+
+
 
         getAllPermissions();
     }
@@ -63,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
     {
         readText.speak(message, TextToSpeech.QUEUE_FLUSH, null);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void sendText()
+    {
 
     }
 
