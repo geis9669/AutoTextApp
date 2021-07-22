@@ -13,19 +13,12 @@ public class AutoTextReceiver extends BroadcastReceiver {
     private static AutoTextReceiver inst;
     public static AutoTextReceiver instance() {return inst;}
     public static final String SMS_BUNDLE = "pdus";
-    private TextToSpeech readText;
 
     public AutoTextReceiver()
     {
         super();
         inst = this;
-        readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status ->{
-            if(status != TextToSpeech.ERROR)
-            {
-                readText.setLanguage(Locale.US);
-                // may need the language to be passed in.
-            }
-        });
+
     }
 
     @Override
@@ -54,30 +47,10 @@ public class AutoTextReceiver extends BroadcastReceiver {
 
 
                 inst.handleSpeakText(smsMessageStr);
-//                readText.speak(smsMessageStr, TextToSpeech.QUEUE_FLUSH, null);
             }
         }
 
 
     }
 
-    public void readTextStateChanged(boolean newState)
-    {
-        if(newState)
-        {
-            readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status ->{
-                if(status != TextToSpeech.ERROR)
-                {
-                    readText.setLanguage(Locale.US);
-                    // may need the language to be passed in.
-                }
-            });
-        }
-        else
-        {
-            readText.shutdown();
-            readText = null;
-        }
-
-    }
 }

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 getPermissions(Manifest.permission.RECEIVE_SMS);
             }
-//            AutoTextReceiver.instance().readTextStateChanged(isChecked);
+
         });
 
         readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status ->{
@@ -64,13 +64,6 @@ public class MainActivity extends AppCompatActivity {
         readText.speak(message, TextToSpeech.QUEUE_FLUSH, null);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-    }
-    public void onPause(){
-//        if(readText != null){
-//            readText.stop();
-//            readText.shutdown();
-//        }
-        super.onPause();
     }
 
     public boolean getAutoTextSwitchState()
