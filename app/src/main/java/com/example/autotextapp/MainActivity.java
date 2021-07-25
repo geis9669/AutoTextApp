@@ -94,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 sentIntent, deliveryIntent);
         Toast.makeText(this, "messageSent", Toast.LENGTH_SHORT).show();
 
-        Build.getSerial();
-
 
 //        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 //        smsIntent.setData(Uri.parse(destinationAddress));
