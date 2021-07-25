@@ -1,0 +1,24 @@
+This page has websites that I referenced to the making of this app.
+
+--SMS Messages tutorial.
+
+https://google-developer-training.github.io/android-developer-phone-sms-course/Lesson%202/2_p_2_sending_sms_messages.html
+https://google-developer-training.github.io/android-developer-phone-sms-course/Lesson%202/2_p_sending_sms_messages.html
+
+https://www.tutorialspoint.com/android/android_sending_sms.htm
+
+-listen for incoming sms messages
+
+https://stackoverflow.com/questions/7089313/android-listen-for-incoming-sms-messages
+
+--Text to speech websites
+
+https://www.tutorialspoint.com/android/android_text_to_speech.htm
+
+https://stackoverflow.com/questions/42377116/texttospeech-in-android-studio-not-being-called-not-working
+
+https://www.tutlane.com/tutorial/android/android-texttospeech-with-examples
+
+--Switch On Off listener
+
+https://stackoverflow.com/questions/11278507/android-widget-switch-on-off-event-listener
