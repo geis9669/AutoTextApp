@@ -30,10 +30,11 @@
 
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="558dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="172dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,10 +48,12 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:enabled="true"
-                android:text="@string/auto_text_message_hint"
                 android:hint="@string/auto_text_message_hint"
-                android:inputType="textMultiLine"/>
+                android:inputType="textMultiLine"
+                android:text="@string/auto_text_message_hint" />
         </LinearLayout>
     </ScrollView>
 
