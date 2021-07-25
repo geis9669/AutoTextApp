@@ -6,9 +6,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -71,8 +77,36 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void sendText()
+    public void sendText(String destinationAddress)
     {
+        //get text to send for the sms message.
+        String smsMessage = smsEditText.getText().toString();
+
+        //Set the service center address if needed, otherwise null.
+        String scAddress = null;
+
+        // Set pending intents to broadcast
+        // when message sent and when delivered, or set to null;
+        PendingIntent sentIntent = null, deliveryIntent = null;
+
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(destinationAddress, scAddress, smsMessage,
+                sentIntent, deliveryIntent);
+        Toast.makeText(this, "messageSent", Toast.LENGTH_SHORT).show();
+
+        Build.getSerial();
+
+
+//        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+//        smsIntent.setData(Uri.parse(destinationAddress));
+//        smsIntent.putExtra("sms_body", smsMessage);
+//        smsIntent.setType("vnd.android-dir/mms-sms");
+//        if(smsIntent.resolveActivity(getPackageManager()) != null){
+//            startActivity(smsIntent);
+//        } else {
+//            Toast.makeText(this, "Can't resolve app for ACTION_VIEW Intent", Toast.LENGTH_SHORT).show();
+////            startActivity(smsIntent);
+//        }
 
     }
 

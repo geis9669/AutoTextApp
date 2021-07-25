@@ -25,24 +25,34 @@ public class AutoTextReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         MainActivity inst = MainActivity.instance();
-        if(inst.getAutoTextSwitchState())
-        {
 
+        if(!(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")))
+        {
+            return;
         }
 
-        if(inst.getReadTextSwitchState())
-        {
+        Bundle intentExtras = intent.getExtras();
+        if (intentExtras != null) {
+            Object[] sms = (Object[]) intentExtras.get(SMS_BUNDLE);
+            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) sms[0]);
+            String address = smsMessage.getOriginatingAddress();
 
-            Bundle intentExtras = intent.getExtras();
-            if(intentExtras != null){
-                Object[] sms = (Object[]) intentExtras.get(SMS_BUNDLE);
+
+            if (inst.getAutoTextSwitchState()) {
+
+                inst.sendText(address);
+
+            }
+
+            if (inst.getReadTextSwitchState()) {
+
+
                 String smsMessageStr = "";
-                for(int i=0; i<sms.length; i++){
-                    SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) sms[i]);
+                for (int i = 0; i < sms.length; i++) {
+                    smsMessage = SmsMessage.createFromPdu((byte[]) sms[i]);
                     String smsBody = smsMessage.getMessageBody();
-                    String address = smsMessage.getOriginatingAddress();
                     smsMessageStr += "SMS From: " + address + "\n";
-                    smsMessageStr += smsBody +"\n";
+                    smsMessageStr += smsBody + "\n";
                 }
 
 
@@ -50,7 +60,7 @@ public class AutoTextReceiver extends BroadcastReceiver {
             }
         }
 
-
     }
+
 
 }
