@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/teal_200">
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/autoText"
@@ -42,12 +43,13 @@
         tools:layout_editor_absoluteX="1dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="410dp"
+        android:id="@+id/textMessageList"
+        android:layout_width="match_parent"
         android:layout_height="490dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:listitem="@layout/recycler_view_item">
+        tools:listitem="@layout/recycler_view_message">
 
     </androidx.recyclerview.widget.RecyclerView>
 
