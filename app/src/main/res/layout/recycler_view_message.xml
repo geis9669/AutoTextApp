@@ -4,11 +4,12 @@
               android:orientation="vertical"
               android:padding="8dp"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+    android:id="@+id/listLayout">
 
   <TextView
-      android:id="@+id/textView1"
-      android:layout_width="389dp"
+      android:id="@+id/textViewCell"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       tools:text="@tools:sample/lorem" />
 
