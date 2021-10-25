@@ -1,11 +1,14 @@
 package com.example.autotextapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -39,7 +42,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position)
     {
+        holder.messageView.setText(messages.get(position));
+        holder.mainLayout.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View view){
+                Intent intent = new Intent(context, AddMessage.class);
+                intent.putExtra("message", messages.get(position));
+                intent.putExtra("index", position);
+                context.startActivity(intent);
 
+            }
+        });
     }
 
     @Override
@@ -66,8 +78,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView messageView;
+        private ConstraintLayout mainLayout;
         public ListViewHolder(@NonNull View itemView){
             super(itemView);
+            mainLayout = itemView.findViewById(R.id.listLayout);
+            messageView = itemView.findViewById(R.id.textViewCell);
         }
     }
 }
