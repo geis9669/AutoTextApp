@@ -8,13 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
 
     private Context context;
+    private ArrayList<String> messages;
 
-    public ListAdapter(Context ct)
+    public ListAdapter(Context ct, ArrayList<String> messages)
     {
         context = ct;
+
+        this.messages = messages;
+        if(this.messages == null)
+        {
+            this.messages = new ArrayList<>();
+        }
 
     }
 
@@ -34,8 +44,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
 
     @Override
     public int getItemCount(){
-        return 0;
+        return messages.size();
     }
+
+    public void add(String message) {
+        messages.add(message);
+    }
+
+    public void clear(){
+        messages.clear();
+    }
+
+    public void insert(String message, int index){
+        messages.add(index, message);
+    }
+
+    public void remove(int index){
+        messages.remove(index);
+    }
+
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
