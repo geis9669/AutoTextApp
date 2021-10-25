@@ -4,21 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.telephony.SmsManager;
-import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private SwitchCompat autoTextSwitch;
     private SwitchCompat readTextSwitch;
     private TextToSpeech readText;
+    private FloatingActionButton addMessageButton;
 
     private EditText smsEditText;
+    private RecyclerView smsMultipleMessageView;
+    private ListAdapter smsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,35 +45,49 @@ public class MainActivity extends AppCompatActivity {
         inst = this;
 
         autoTextSwitch = findViewById(R.id.autoText);
-        autoTextSwitch.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener(){
+        autoTextSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
+                if (isChecked) {
                     getAllPermissions();
                 }
             }
         });
         readTextSwitch = findViewById(R.id.readText);
         readTextSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked)
-            {
+            if (isChecked) {
                 getPermissions(Manifest.permission.RECEIVE_SMS);
             }
 
         });
 
-        readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status ->{
-            if(status != TextToSpeech.ERROR)
-            {
+        readText = new TextToSpeech(MainActivity.instance().getApplicationContext(), status -> {
+            if (status != TextToSpeech.ERROR) {
                 readText.setLanguage(Locale.US);
                 // may need the language to be passed in.
             }
         });
 
+        addMessageButton = findViewById(R.id.addMessageButton);
+        addMessageButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), AddMessage.class);
+                intent.putExtra("message","");
+
+                view.getContext().startActivity(intent);
+
+            }
+        });
+
+
+        smsMultipleMessageView = findViewById(R.id.textMessageList);
+        smsAdapter = new ListAdapter(this, new ArrayList<>());
+        smsMultipleMessageView.setAdapter(smsAdapter);
+        smsMultipleMessageView.setLayoutManager(new LinearLayoutManager(this));
+
+
         smsEditText = findViewById(R.id.textView);
-
-
 
         getAllPermissions();
     }
