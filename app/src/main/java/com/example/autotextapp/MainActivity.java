@@ -74,9 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(view.getContext(), AddMessage.class);
                 intent.putExtra("message","");
+//                intent.putStringArrayListExtra();
 
                 view.getContext().startActivity(intent);
 
+                
             }
         });
 
