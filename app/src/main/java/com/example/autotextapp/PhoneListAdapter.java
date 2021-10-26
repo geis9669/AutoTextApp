@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
 
     private Context context;
     private ArrayList<String> phoneList;
+
     public PhoneListAdapter(Context context, ArrayList<String> phoneList){
         this.context = context;
         this.phoneList = phoneList;
@@ -30,12 +32,13 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     public PhoneListAdapter.PhoneListViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_message, parent, false);
-        return new PhoneListAdapter.PhoneListViewHolder(view);
+        return new PhoneListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PhoneListAdapter.PhoneListViewHolder holder, int position) {
-        holder.messageView.setText(phoneList.get(position));
+        //add a listener to handle when you click the item.
+        holder.phoneNum.setText(phoneList.get(position));
     }
 
     @Override
@@ -61,12 +64,12 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
 
     public class PhoneListViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView messageView;
+        private EditText phoneNum;
         private ConstraintLayout mainLayout;
         public PhoneListViewHolder(@NonNull View itemView){
             super(itemView);
-//            mainLayout = itemView.findViewById(R.id.listLayout);
-//            messageView = itemView.findViewById(R.id.textViewCell);
+            mainLayout = itemView.findViewById(R.id.phoneCellLayout);
+            phoneNum = itemView.findViewById(R.id.editTextPhone);
         }
     }
 }
