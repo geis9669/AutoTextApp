@@ -6,6 +6,9 @@
 
     <string name="read_text">read texts received</string>
 
-    <string name="auto_text_message_hint">Write the text that will be sent when the phone is called</string>
+    <string name="auto_text_message_hint">Write the text that will be sent when the phone receives a sms message</string>
+
+    <string name="save_message">save</string>
+    <string name="action_settings">settings</string>
 
 </resources>
