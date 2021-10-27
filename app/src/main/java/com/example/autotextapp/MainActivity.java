@@ -71,14 +71,10 @@ public class MainActivity extends AppCompatActivity {
         addMessageButton = findViewById(R.id.addMessageButton);
         addMessageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
-                Intent intent = new Intent(view.getContext(), AddMessage.class);
-                intent.putExtra("message","");
+                Intent intent = new Intent(getApplicationContext(), AddMessage.class);
+                startActivity(intent);
+//                intent.putExtra("message","");
 //                intent.putStringArrayListExtra();
-
-                view.getContext().startActivity(intent);
-
-                
             }
         });
 
