@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/textEdit"
+        android:id="@+id/text_edit_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -21,12 +21,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-<!--        app:layout_constraintTop_toBottomOf="@+id/toolbaradd" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/phoneList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -35,8 +34,10 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEdit"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_message"
+        app:layout_constraintVertical_bias="0.4"
         tools:listitem="@layout/phone_cell">
 
     </androidx.recyclerview.widget.RecyclerView>
