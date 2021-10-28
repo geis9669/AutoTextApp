@@ -19,6 +19,12 @@ public class AddMessage extends AppCompatActivity {
     public static String MESSAGEINPUT= "message";
     public static String PHONENUMS_LIST = "phone_num";
 
+    private String messageText;
+    private ArrayList<String> phoneNumbers;
+
+//    private RecyclerView phoneNumRecycler;
+//    private PhoneListAdapter phoneAdapter;
+//    private EditText messageEditText;
 //    FloatingActionButton addPhoneNumButton;
 
     @Override
@@ -28,7 +34,18 @@ public class AddMessage extends AppCompatActivity {
         retrieveData();
 
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        if(ab != null)
+        {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
+        RecyclerView phoneNumRecycler = findViewById(R.id.phoneList);
+        PhoneListAdapter phoneAdapter = new PhoneListAdapter(this, phoneNumbers);
+        phoneNumRecycler.setAdapter(phoneAdapter);
+        phoneNumRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        EditText messageEditText = findViewById(R.id.text_edit_message);
+        messageEditText.setText(messageText);
 
         FloatingActionButton addPhoneNumButton = findViewById(R.id.add_phone_num_button);
         addPhoneNumButton.setOnClickListener( (view)->
