@@ -16,6 +16,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class AddMessage extends AppCompatActivity {
+    public static String MESSAGEINPUT= "message";
+    public static String PHONENUMS_LIST = "phone_num";
 
 //    FloatingActionButton addPhoneNumButton;
 
@@ -23,6 +25,7 @@ public class AddMessage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_message);
+        retrieveData();
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -33,6 +36,26 @@ public class AddMessage extends AppCompatActivity {
             // code what the button will do
             // need to get the recycle view to display and show the phone numbers
 
+        });
+
+
+    }
+
+    /**
+     * retrieves data from the intents extras.
+     * String message
+     * ArrayList phone numbers. make use of setStringArrayListExtra for the intent.
+     */
+    private void retrieveData()
+    {
+        if(getIntent().hasExtra(MESSAGEINPUT) && getIntent().hasExtra(PHONENUMS_LIST))
+        {
+            messageText = getIntent().getStringExtra(MESSAGEINPUT);
+            phoneNumbers = getIntent().getStringArrayListExtra(PHONENUMS_LIST);
+        }else{
+            messageText = "";
+            phoneNumbers = new ArrayList<>();
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
