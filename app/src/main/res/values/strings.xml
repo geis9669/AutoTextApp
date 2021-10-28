@@ -10,5 +10,6 @@
 
     <string name="save_message">save</string>
     <string name="action_settings">settings</string>
+    <string name="add_phone_num">click to add a phone number</string>
 
 </resources>
