@@ -23,7 +23,7 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
         this.phoneList = phoneList;
         if(this.phoneList==null)
         {
-            this.phoneList= new ArrayList<>();
+            this.phoneList = new ArrayList<>();
         }
     }
 
