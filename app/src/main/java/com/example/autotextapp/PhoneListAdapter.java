@@ -31,14 +31,15 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     @Override
     public PhoneListAdapter.PhoneListViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_view_message, parent, false);
+        View view = inflater.inflate(R.layout.phone_cell, parent, false);
         return new PhoneListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PhoneListAdapter.PhoneListViewHolder holder, int position) {
         //add a listener to handle when you click the item.
-        holder.phoneNum.setText(phoneList.get(position));
+        String temp = phoneList.get(position);
+        holder.phoneNum.setText(temp);
     }
 
     @Override
@@ -48,18 +49,22 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
 
     public void add(String message) {
         phoneList.add(message);
+        notifyDataSetChanged();
     }
 
     public void clear(){
         phoneList.clear();
+        notifyDataSetChanged();
     }
 
     public void insert(String message, int index){
         phoneList.add(index, message);
+        notifyDataSetChanged();
     }
 
     public void remove(int index){
         phoneList.remove(index);
+        notifyDataSetChanged();
     }
 
     public class PhoneListViewHolder extends RecyclerView.ViewHolder {
