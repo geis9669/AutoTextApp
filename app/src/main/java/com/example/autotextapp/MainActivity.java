@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    getAllPermissions();
+                    getAllNeededPermissions();
                 }
             }
         });
         readTextSwitch = findViewById(R.id.readText);
         readTextSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                getPermissions(Manifest.permission.RECEIVE_SMS);
+                getPermission(Manifest.permission.RECEIVE_SMS);
             }
 
         });
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 sentIntent, deliveryIntent);
         Toast.makeText(this, "messageSent", Toast.LENGTH_SHORT).show();
 
-
 //        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 //        smsIntent.setData(Uri.parse(destinationAddress));
 //        smsIntent.putExtra("sms_body", smsMessage);
@@ -179,11 +178,11 @@ public class MainActivity extends AppCompatActivity {
         return readTextSwitch.isChecked();
     }
 
-    private void getAllPermissions()
+    private void getAllNeededPermissions()
     {
-        getPermissions(Manifest.permission.RECEIVE_SMS);
-        getPermissions(Manifest.permission.SEND_SMS);
-        getPermissions(Manifest.permission.READ_PHONE_STATE);
+        getPermission(Manifest.permission.RECEIVE_SMS);
+        getPermission(Manifest.permission.SEND_SMS);
+        getPermission(Manifest.permission.READ_PHONE_STATE);
 
     }
 
@@ -191,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param permission a permission from the Manifest.permission class.
      */
-    private void getPermissions(String permission)
+    private void getPermission(String permission)
     {
         if(ContextCompat.checkSelfPermission(MainActivity.this,
                 permission) != PackageManager.PERMISSION_GRANTED)
