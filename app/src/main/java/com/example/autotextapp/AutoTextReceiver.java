@@ -47,7 +47,7 @@ public class AutoTextReceiver extends BroadcastReceiver {
                 }
             }//packages the object[] as a smsMessage[] for later use.
 
-            inst.handleSMS_Message(smsMessages);
+            inst.handleSMS_MessageReceived(smsMessages);
         }
 
 

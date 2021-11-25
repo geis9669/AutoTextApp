@@ -11,6 +11,7 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         getAllNeededPermissions();
     }
 
-    public void handleSMS_Message(SmsMessage[] smsMessages)
+    public void handleSMS_MessageReceived(SmsMessage[] smsMessages)
     {
         if(smsMessages.length<1)
         {
@@ -133,8 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleSpeakText(String message)
     {
-//        readText.speak(message, TextToSpeech.QUEUE_ADD, null, "MainActivity.handleSpeakText");
-        readText.speak(message, TextToSpeech.QUEUE_ADD, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            readText.speak(message, TextToSpeech.QUEUE_ADD, null, "MainActivity.handleSpeakText");
+        }else {
+            readText.speak(message, TextToSpeech.QUEUE_ADD, null);
+        }
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
