@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -87,12 +87,38 @@ public class MainActivity extends AppCompatActivity {
 
         smsEditText = findViewById(R.id.textView);
 
-        getAllPermissions();
+        getAllNeededPermissions();
+    }
+
+    public void handleSMS_Message(SmsMessage[] smsMessages)
+    {
+        if(smsMessages.length<1)
+        {
+            return;
+        }
+
+        //assume that the address is the same for the message list.
+        String address = smsMessages[0].getOriginatingAddress();
+
+        if(getAutoTextSwitchState())
+        {
+            sendText(address);
+        }
+        if(getReadTextSwitchState())
+        {
+            String messageBody = "Message from "+address;
+            for(int i = 0; i<smsMessages.length; i++)
+            {
+                messageBody += smsMessages[i].getMessageBody();
+            }
+            handleSpeakText(messageBody);
+        }
     }
 
     public void handleSpeakText(String message)
     {
-        readText.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+//        readText.speak(message, TextToSpeech.QUEUE_ADD, null, "MainActivity.handleSpeakText");
+        readText.speak(message, TextToSpeech.QUEUE_ADD, null);
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
