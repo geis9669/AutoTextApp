@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.view.View;
@@ -65,6 +66,21 @@ public class MainActivity extends AppCompatActivity {
             if (status != TextToSpeech.ERROR) {
                 readText.setLanguage(Locale.US);
                 // may need the language to be passed in.
+            }
+        });
+        readText.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+            @Override
+            public void onDone(String utteranceId) {
+
+            }
+            @Override
+            public void onError(String utteranceId) {
+                readText.stop();
+                Toast.makeText(inst, "", Toast.LENGTH_LONG).show();
             }
         });
 
