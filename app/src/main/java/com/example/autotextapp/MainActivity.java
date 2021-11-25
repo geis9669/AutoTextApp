@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.autotextapp.data.PhoneMessageSendList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText smsEditText;
     private RecyclerView smsMultipleMessageView;
     private ListAdapter smsAdapter;
+
+    PhoneMessageSendList phoneMessageSendList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         smsEditText = findViewById(R.id.textView);
+
+        //may need to load the values from memory
+        phoneMessageSendList = new PhoneMessageSendList();
 
         getAllNeededPermissions();
     }
