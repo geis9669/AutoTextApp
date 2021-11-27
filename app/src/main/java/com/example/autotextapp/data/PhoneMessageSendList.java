@@ -1,6 +1,7 @@
 package com.example.autotextapp.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
@@ -14,18 +15,23 @@ public class PhoneMessageSendList {
     public PhoneMessageSendList()
     {
         messagePhoneList = new Hashtable<>();
-
     }
 
+    /**
+     * Will sort the phoneNumbers
+     * @param message
+     * @param phoneNumbers
+     */
     public void addMessage_PhoneNumbers(String message, ArrayList<String> phoneNumbers)
     {
         String[] phoneNumbersArray = new String[phoneNumbers.size()];
         phoneNumbers.toArray(phoneNumbersArray);
-        messagePhoneList.put(message, phoneNumbersArray);
+        addMessage_PhoneNumbers(message, phoneNumbersArray);
     }
 
     public void addMessage_PhoneNumbers(String message, String[] phoneNumbers)
     {
+        Arrays.sort(phoneNumbers);
         messagePhoneList.put(message, phoneNumbers);
     }
 
@@ -48,16 +54,12 @@ public class PhoneMessageSendList {
             String[] phoneNums = messagePhoneList.get(message);
             if(phoneNums != null)
             {
-                //could sort the list when its added then use binary search.
-                for(String phoneNum : phoneNums)
+                int index = Arrays.binarySearch(phoneNums, "phoneNumber");
+                if(index>=0)
                 {
-                    if(phoneNumber.equals(phoneNum))
-                    {
-                        return message;
-                    }
+                    return phoneNums[index];
                 }
             }
-
         }
         return null;
     }
