@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class AddMessage extends AppCompatActivity {
-    public static String MESSAGEINPUT= "message";
+    public static String MESSAGE_INPUT = "message";
     public static String PHONENUMS_LIST = "phone_num";
 
     private String messageText;
@@ -65,9 +65,9 @@ public class AddMessage extends AppCompatActivity {
      */
     private void retrieveData()
     {
-        if(getIntent().hasExtra(MESSAGEINPUT) && getIntent().hasExtra(PHONENUMS_LIST))
+        if(getIntent().hasExtra(MESSAGE_INPUT) && getIntent().hasExtra(PHONENUMS_LIST))
         {
-            messageText = getIntent().getStringExtra(MESSAGEINPUT);
+            messageText = getIntent().getStringExtra(MESSAGE_INPUT);
             phoneNumbers = getIntent().getStringArrayListExtra(PHONENUMS_LIST);
         }else{
             messageText = "";
